@@ -1,121 +1,69 @@
 import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
+import html2canvas from 'html2canvas'
+import Toolbar from './components/Toolbar'
+import CodeBox from './components/CodeBox'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [code, setCode] = useState(
+    `function calculateScore(points, bonus) {
+    const total = points * bonus;
+    
+    if (total > 100){
+    console.log("New high score!!!");
+    }
+    return total;
+    }`
+  )
+
+  const [winStyle, setWinStyle] = useState('mac')
+  const [theme, setTheme] = useState('vscode')
+  const [lang, setLang] = useState('javascript')
+  const [bg, setBg] = useState('linear-gradient(135deg, #667eea 0%, #764ba2 100%)')
+  const [padding, setPadding] = useState('48px')
+
+  function downloadPizza() {
+    const element = document.getElementById('capture-area')
+
+    html2canvas(element, {
+      scale: 2,
+      backgroundColor: null
+    }).then((canvas) => {
+      const a = document.createElement('a')
+      a.download = "Pizza.png"
+      a.href = canvas.toDataURL('image/png')
+      a.click()
+    })
+  }
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="app">
+      <h1
+      style={{
+        margin: '0 0 6px 0',
+        fontSize: '26px',
+        fontweight: '700'
+      }}
+      >Pizza</h1>
 
-      <div className="ticks"></div>
+      <toolbar
+      winStyle={winStyle} setWinStyle={setWinStyle} 
+      theme={theme} setTheme={setTheme}
+      lang={lang} setLang={setLang}
+      bg={bg} setBg={setBg}
+      padding={padding} setPadding={setPadding}
+      onDownload={downloadPizza}
+      />
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+      <CodeBox
+      code={code} setCode={setCode}
+      winStyle={winStyle}
+      theme={theme}
+      lang={lang}
+      bg={bg}
+      padding={padding}
+      />
+    </div> 
   )
 }
 
