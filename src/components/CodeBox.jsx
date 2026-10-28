@@ -37,7 +37,7 @@ export default function CodeBox({ code, setCode, winStyle, theme, lang, bg, padd
             background: bg,
             padding: padding,
             borderRadius: '12px',
-            transition: 'padding 0.2 ease',
+            transition: 'padding 0.2s ease',
             minWidth: '520px',
             maxWidth: '850px',
         }}
@@ -132,7 +132,7 @@ export default function CodeBox({ code, setCode, winStyle, theme, lang, bg, padd
                         className= "input"
                         value={code}
                         onChange={(e) => setCode(e.target.value)}
-                        onKeydown={handleTab}
+                        onKeyDown={handleTab}
                         spellCheck="false"
                         autoCapitalize="off"
                         style={{
