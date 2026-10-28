@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import html2canvas from 'html2canvas'
-import Toolbar from './components/Toolbar'
 import CodeBox from './components/CodeBox'
-import './App.css'
 
 function App() {
   const [code, setCode] = useState(
