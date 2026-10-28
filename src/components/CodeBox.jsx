@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { vscDarkPlus, dracula, atomDark, oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism'
-
+import { VscChromeMinimize, VscChromeRestore, VscChromeClose } from "react-icons/vsc";
 
 export default function CodeBox({ code, setCode, winStyle, theme, lang, bg, padding }) {
     const [fileName, setFileName] = useState('script.js')
@@ -96,7 +96,7 @@ export default function CodeBox({ code, setCode, winStyle, theme, lang, bg, padd
                                 border: 'none',
                                 color: isLight ? '#222' : '#ddd',
                                 fontSize: '13px',
-                                outline: 'none';
+                                outline: 'none',
                                 width: '85px'
                             }}
                             />
@@ -106,14 +106,60 @@ export default function CodeBox({ code, setCode, winStyle, theme, lang, bg, padd
                             gap: '14px',
                             paddingRight: '14px',
                             color: '#777',
-                            fontSize: '12px'
+                            fontSize: '16px'
                         }}
                         >
-                            <span></span>
-
+                            <VscChromeMinimize style={{ cursor: 'pointer'}}/>
+                            <VscChromeRestore styele={{ cursoe: 'pointer'}}/>
+                            <VscChromeClose style={{ cursoe: 'pointer'}}
+                            onMouseEnter={(e) => e.target.style.color = '#ff4757'}
+                            onMouseLeave={(e) => e.target.style.color = '#888'}
+                            onClick={() => setCode('')}
+                            />
                         </div>
                     </div>    
                 )}
+
+                <div className="editor">
+                    <div className="linenumber">
+                        {Array.from({ length: totalLines }).map((_, idx) => (
+                            <div key={idx}>{idx + 1}</div>
+                        ))}
+
+                    </div>
+                    <div className="code-stack">
+                        <textarea
+                        className= "input"
+                        value="{code"
+                        onChange={(e) => setCode(e.target.value)}
+                        onKeydown={handTab}
+                        spellCheck="false"
+                        autoCapitalize="off"
+                        style={{
+                            caretColor: isLight ? '#000' : '#fff'
+                        }}
+                        data-html2canvas-ignore="true"
+                        />
+
+                        <SyntaxHighLighter
+                        language={lang}
+                        style={activeTheme}
+                        customeStyle={{
+                            background: 'transparent'
+                        }}
+                        codeTagProps={{
+                            style: {
+                                fontFamily: "'Consolas', 'Courier New', monospace",
+                                fontSize: '15px',
+                                lineHeight: '1.6'
+                            }
+                        }}
+                        >
+                            {code + ' '}
+                        </SyntaxHighLighter>
+                    </div>
+
+                </div>
             </div>
         </div> 
         
