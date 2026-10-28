@@ -8,12 +8,12 @@ export default function CodeBox({ code, setCode, winStyle, theme, lang, bg, padd
 
     // theme
 
-    let activetheme = vscDarkPlus
+    let activeTheme = vscDarkPlus
     if (theme === 'dracula') activeTheme = dracula
     if (theme === 'atom') activeTheme = atomDark
     if (theme === 'light') activeTheme = oneLight
 
-    const isLight = theme === light
+    const isLight = theme === 'light'
 
     const totalLines = code.split('\n').length
 
@@ -37,7 +37,7 @@ export default function CodeBox({ code, setCode, winStyle, theme, lang, bg, padd
             background: bg,
             padding: padding,
             borderRadius: '12px',
-            padding: 'padding 0.2 ease',
+            transition: 'padding 0.2 ease',
             minWidth: '520px',
             maxWidth: '850px',
         }}
@@ -56,7 +56,7 @@ export default function CodeBox({ code, setCode, winStyle, theme, lang, bg, padd
                         <div style={{ display: 'flex', gap: '8px'}}>
                             <div style={{ width: 12, height: 12, borderRadius: '50%', background: '#ff5f56' }} />
                             <div style={{ width: 12, height: 12, borderRadius: '50%', background: '#ffbd2e' }} />
-                            <div style={{ widtg: 12, height: 12, borderRadius: '50%', background: '#27c93f' }} />
+                            <div style={{ width: 12, height: 12, borderRadius: '50%', background: '#27c93f' }} />
                         </div>
 
                         <input 
@@ -111,7 +111,7 @@ export default function CodeBox({ code, setCode, winStyle, theme, lang, bg, padd
                         >
                             <VscChromeMinimize style={{ cursor: 'pointer'}}/>
                             <VscChromeRestore styele={{ cursoe: 'pointer'}}/>
-                            <VscChromeClose style={{ cursoe: 'pointer'}}
+                            <VscChromeClose style={{ cursor: 'pointer'}}
                             onMouseEnter={(e) => e.target.style.color = '#ff4757'}
                             onMouseLeave={(e) => e.target.style.color = '#888'}
                             onClick={() => setCode('')}
@@ -130,9 +130,9 @@ export default function CodeBox({ code, setCode, winStyle, theme, lang, bg, padd
                     <div className="code-stack">
                         <textarea
                         className= "input"
-                        value="{code"
+                        value={code}
                         onChange={(e) => setCode(e.target.value)}
-                        onKeydown={handTab}
+                        onKeydown={handleTab}
                         spellCheck="false"
                         autoCapitalize="off"
                         style={{
@@ -141,10 +141,10 @@ export default function CodeBox({ code, setCode, winStyle, theme, lang, bg, padd
                         data-html2canvas-ignore="true"
                         />
 
-                        <SyntaxHighLighter
+                        <SyntaxHighlighter
                         language={lang}
                         style={activeTheme}
-                        customeStyle={{
+                        customStyle={{
                             background: 'transparent'
                         }}
                         codeTagProps={{
@@ -156,7 +156,7 @@ export default function CodeBox({ code, setCode, winStyle, theme, lang, bg, padd
                         }}
                         >
                             {code + ' '}
-                        </SyntaxHighLighter>
+                        </SyntaxHighlighter>
                     </div>
 
                 </div>
