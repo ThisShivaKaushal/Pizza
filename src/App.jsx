@@ -2,7 +2,7 @@ import { useState } from 'react'
 import html2canvas from 'html2canvas'
 import CodeBox from './components/CodeBox'
 import Toolbar from './components/Toolbar'
-//import './App.css'
+import './App.css'
 
 function App() {
   const [code, setCode] = useState(
@@ -46,7 +46,7 @@ function App() {
       }}
       >Pizza</h1>
 
-      <toolbar
+      <Toolbar
       winStyle={winStyle} setWinStyle={setWinStyle} 
       theme={theme} setTheme={setTheme}
       lang={lang} setLang={setLang}
