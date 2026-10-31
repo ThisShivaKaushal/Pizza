@@ -1,16 +1,37 @@
-# React + Vite
+# Pizza
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A simple, cool web app where you can paste or type your code and turn it into clean, aesthetic screenshots.
 
-Currently, two official plugins are available:
+## Screenshots
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+![Screeshots of Pizza](/preview.png)
 
-## React Compiler
+## Features 
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- You can click and type directly inside the colored code window.
+- Switch between macOs & Vs code.
+- Comes with Vs code dark, Dracula, Atom One dark, and light mode.
+- Click right on `script.js` in the window header to rename your file to whatever you want.
+- Click Export to download the image.
 
-## Expanding the Oxlint configuration
+## Tools
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+- React
+- react-syntax-highlighter
+- html2canvas
+
+## How to run locally
+
+1. Clone this repo `https://Github.com/ThisShivaKaushal/Pizza`
+2. Install the packages `npm install`
+3. Start local server `npm run dev`
+
+## License
+
+This is under MIT license so do whatever you want.
+
+## Future Idead
+
+1. Add more programming language.
+2. Add custom color picker for background.
+3. Add a copy image to clipboard button.
